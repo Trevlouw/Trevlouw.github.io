@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="styles.css">
+    <script type="text/javascript" src="main.js"></script>
+  </head>
+  <body>
+    <h1>Fidget Spinner Tycoon</h1>
+    <h2>How To Play</h2>
+    <p>
+      Make fidget spinners and sell them to make money wich is represented as $
+    </p>
+    <button onclick="increasescore()">Produce Fidget Spinner</button>
+    <button onclick="sellscore()">Sell Fidget Spinner</button>
+    <p class="scoreprecent"><span id="score" class="score">0</span>%</p>
+    <p class="scoreprecent">$<span id="money" class="score">0</span></p>
+    <h2>Upgrades</h2>
+    <button onclick="buybtools()">
+      Buy Building Tools <br>
+      <span id="btoolscost">10</span>
+    </button>
+
+    <button onclick="buysp()">
+      Buy Store Partnership <br>
+      <span>50</span>
+    </button>
+
+    <br>
+
+    <button onclick="buyfriend()">
+      Hire A Friend <br>
+      <span>50</span>
+    </button>
+
+    <button onclick="buymarketer()">
+      Hire A Marketer <br>
+      <span>50</span>
+    </button>
+
+    <br>
+
+    <button onclick="save()">
+      Save <br>
+      No Autosave
+    </button>
+
+    <button onclick="load()">
+      Load <br>
+      No Autoload
+    </button>
+  </body>
+</html>
