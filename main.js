@@ -1,15 +1,22 @@
-var game = {
+let game = {
+	// score
   score: 0,
+  	// score per click
   spc: 1,
+  	// money
   money: 0,
 
+	// buy tools
   btoolscost: 10,
   btoolbuys: 0,
 
+	// store partnership
   sp: 1,
 
   friends: 0,
-  marketers: 0
+  marketers: 0,
+  prestigepointbuys: 1,
+  prestigepointcost: 100
 }
 
 function increasescore() {
@@ -18,10 +25,10 @@ function increasescore() {
 }
 
 function sellscore() {
-  if (game.score >= (100 * game.sp)) {
+  if (game.score >= 100 * game.sp) {
     game.score -= 100 * game.sp;
-    game.money += 5 * game.sp;
-    document.getElementById("money").innerHTML = game.money;
+    game.money += 5 * game.sp * game.prestigepointbuys;
+	document.getElementById("money").innerHTML = game.money;
     document.getElementById("score").innerHTML = game.score;
   }
 }
@@ -65,18 +72,30 @@ function buymarketer() {
 }
 
 function save() {
-  localStorage.setItem('save', JSON.stringify(game));
+  localStorage.setItem("save", JSON.stringify(game));
 }
 
 function load() {
-  game = JSON.parse(localStorage.getItem("save"))
+	game = JSON.parse(localStorage.getItem("save"))
 }
 
-window.setInterval(function(){
-  game.score += (game.friends)
-  if (game.score >= (game.marketers * 100)) {
-    game.score -= 100 * game.marketers;
-    game.money += 5 * game.marketers;
+function prestige() {
+  console.log(game.money)
+  console.log(game.prestigepointcost)
+  if (game.money >= game.prestigepointcost) {
+    game.prestigepointbuys++;
+    game.money -= game.prestigepointcost
+    game.prestigepointcost = game.prestigepointbuys * 100
+    document.getElementById("prestigecost").innerHTML = game.prestigecost;
+  }
+  document.getElementById("money").innerHTML = game.money;
+}
+
+window.setInterval(function() {
+  game.score += game.friends // && - AND || - OR
+  if (game.score >= game.sp * 100 && game.marketers >= 1) {
+    game.score -= 100 * game.sp;
+    game.money += 5 * game.sp * game.prestigepointbuys;
   }
   document.getElementById("score").innerHTML = game.score;
   document.getElementById("money").innerHTML = game.money;
